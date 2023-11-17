@@ -30,7 +30,7 @@ function DayDate({ date }) {
         };
 
         fetchData();
-    }, []);
+    }, [date]);
 
     return (
         <div className="w-[400px] h-1 relative flex justify-center item-center">
