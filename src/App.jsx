@@ -33,12 +33,8 @@ function App() {
                         element={
                             <div>
                                 <h1>메모 작성하기</h1>
-                                <Form
-                                    onAdd={handleWriteMemo}
-                                    onSubmit={handleAddMemo}
-                                    memo={memo}
-                                />
-                                <Memos memos={memos} />
+                                <Form />
+                                <Memos />
                             </div>
                         }
                     />

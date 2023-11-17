@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import './Calendar.css';
+import useMemosStore from './StoreMemos';
 
 const Calendar = () => {
     const pad = (num) => num.toString().padStart(2, '0');
-    const [date, setDate] = useState(new Date('2022-10-10'));
+    const { date, updateDate } = useMemosStore();
 
     const data = [
         { date: '2022-10-15', content: '테스트1' },
