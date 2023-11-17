@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function DayDate({ date }) {
     const [userDate, setUserDate] = useState([]);
     console.log(date);
-    console.log(`https://62b7-128-134-157-9.ngrok-free.app/daily/${date}`);
+    console.log(`https://2c98-106-101-129-129.ngrok-free.app/daily/${date}`);
 
     useEffect(() => {
         // 요청 헤더에 추가할 옵션 객체를 생성
@@ -19,7 +19,7 @@ function DayDate({ date }) {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    `https://62b7-128-134-157-9.ngrok-free.app/daily/${date}`,
+                    `https://2c98-106-101-129-129.ngrok-free.app/daily/${date}`,
                     requestOptions
                 );
                 const jsonData = await response.json();

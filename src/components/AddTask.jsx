@@ -1,4 +1,41 @@
+import React, { useState } from 'react';
+import useMemosStore from '../StoreMemos';
+
 function AddTask() {
+    const { date, pad } = useMemosStore();
+    const dateString = date.toLocaleDateString(); // or date.toDateString()
+    const parts = dateString.split('.'); // 문자열을 점(.)을 기준으로 분할
+    // 연, 월, 일을 추출하고 필요한 경우 두 자리로 패딩
+    console.log(parts);
+    const year = parts[0];
+    const month = parts[1].replace(/\s+/g, '').padStart(2, '0');
+    const day = parts[2].replace(/\s+/g, '').padStart(2, '0');
+
+    // "xxxx-xx-xx" 형식으로 변환
+    const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate);
+    const [eventName, setEventName] = useState('');
+    const [category, setCategory] = useState('');
+    const [priority, setPriority] = useState(0);
+
+    const handleRegister = () => {
+        const data = {
+            event_name: eventName,
+            event_date: formattedDate,
+            category: category,
+            priority: priority,
+        };
+        console.log(data);
+        fetch('https://2c98-106-101-129-129.ngrok-free.app/designated', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+    };
     return (
         <div>
             <div className="w-[343px] h-[395px] relative bg-white rounded-[10px]">
@@ -19,33 +56,65 @@ function AddTask() {
                         placeholder="일정 이름을 입력하세요"
                         maxlength="20"
                         size="20"
+                        value={eventName}
+                        onChange={(e) => setEventName(e.target.value)}
                     ></input>
                 </div>
                 <div className="left-[24px] top-[189px] absolute flex-col justify-start items-start gap-3 inline-flex">
                     <div className="text-center text-black text-sm font-normal font-['SF Pro']">
                         카테고리
                     </div>
-                    <div className="justify-start items-center gap-[27px] inline-flex">
-                        <button className="p-3 rounded-lg flex-col justify-center items-center gap-2.5 inline-flex">
-                            <div className="text-center text-black text-base font-normal font-['SF Pro']">
-                                수업
-                            </div>
-                        </button>
-                        <button className="p-3 rounded-lg flex-col justify-center items-center gap-2.5 inline-flex">
-                            <div className="text-center text-black text-base font-normal font-['SF Pro']">
-                                시험
-                            </div>
-                        </button>
-                        <button className="p-3 rounded-lg flex-col justify-center items-center gap-2.5 inline-flex">
-                            <div className="text-center text-black text-base font-normal font-['SF Pro']">
-                                자기계발
-                            </div>
-                        </button>
-                        <button className="p-3 rounded-lg flex-col justify-center items-center gap-2.5 inline-flex">
-                            <div className="text-center text-black text-base font-normal font-['SF Pro']">
-                                취미
-                            </div>
-                        </button>
+                    <div className="justify-start items-center gap-[12px] inline-flex">
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="수업"
+                                checked={category === '수업'}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />{' '}
+                            수업
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="시험"
+                                checked={category === '시험'}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />{' '}
+                            시험
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="취미"
+                                checked={category === '취미'}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />{' '}
+                            취미
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="자기계발"
+                                checked={category === '자기계발'}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />{' '}
+                            자기계발
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="category"
+                                value="기타"
+                                checked={category === '기타'}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />{' '}
+                            기타
+                        </label>
                     </div>
                 </div>
                 <div className="left-[24px] top-[286px] absolute flex-col justify-start items-start gap-3 inline-flex">
@@ -58,11 +127,22 @@ function AddTask() {
                         placeholder="0~10까지 입력하세요"
                         maxlength="20"
                         size="20"
+                        value={priority}
+                        onChange={(e) => {
+                            const numValue = parseInt(e.target.value, 10);
+                            if (!isNaN(numValue)) {
+                                setPriority(numValue);
+                            } else if (e.target.value === '') {
+                                setPriority(0); // 빈 문자열 입력 시 우선순위를 0으로 리셋
+                            }
+                        }}
                     ></input>
                     <div className="justify-start items-center gap-[27px] inline-flex"></div>
                 </div>
             </div>
-            <button>추가하기</button>
+            <button className="register" onClick={handleRegister}>
+                추가하기
+            </button>
         </div>
     );
 }

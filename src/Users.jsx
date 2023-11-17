@@ -17,7 +17,7 @@ function User() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    'https://62b7-128-134-157-9.ngrok-free.app/test',
+                    'https://2c98-106-101-129-129.ngrok-free.app/test',
                     requestOptions
                 );
                 const jsonData = await response.json();
