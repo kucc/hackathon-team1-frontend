@@ -2,7 +2,7 @@ import DayToDo from './DayToDo';
 
 const Daydate = '2022-10-15';
 
-function Day() {
+function Day({ Daydate }) {
     return (
         <div className="w-[704px] h-auto relative flex-column  justify-center items-center">
             <div className="w-[632px] h-[124px] pl-[68px] pr-[87px] left-[36px] top-[54px] absolute bg-gray-900 rounded-[10px] justify-start items-center inline-flex">
