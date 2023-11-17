@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-function DayDate() {
+function DayDate({ date }) {
     const [userDate, setUserDate] = useState([]);
+    console.log(date);
+    console.log(`https://62b7-128-134-157-9.ngrok-free.app/daily/${date}`);
 
     useEffect(() => {
         // 요청 헤더에 추가할 옵션 객체를 생성
@@ -17,7 +19,7 @@ function DayDate() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    'https://62b7-128-134-157-9.ngrok-free.app/daily/2023-11-18',
+                    `https://62b7-128-134-157-9.ngrok-free.app/daily/${date}`,
                     requestOptions
                 );
                 const jsonData = await response.json();
@@ -31,14 +33,10 @@ function DayDate() {
     }, []);
 
     return (
-        <div>
-            <h1>User 정보</h1>
-            <ul>
+        <div className="w-[400px] h-1 relative flex justify-center item-center">
+            <ul className="text-center text-white text-[32px] font-bold font-['Noto Sans KR'] leading-[48px]">
                 {userDate.map((user) => (
-                    <li key={user.id}>
-                        이름: {user.event_id}, 나이: {user.category}, 일짜 :
-                        {user.event_date}
-                    </li>
+                    <li key={user.id}>{user.event_name}</li>
                 ))}
             </ul>
         </div>

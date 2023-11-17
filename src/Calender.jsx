@@ -4,7 +4,7 @@ import useMemosStore from './StoreMemos';
 
 const Calendar = () => {
     const pad = (num) => num.toString().padStart(2, '0');
-    const { date, updateDate } = useMemosStore();
+    const { date, updateDate, updateFormDate } = useMemosStore();
 
     const data = [
         { date: '2022-10-15', content: '테스트1' },

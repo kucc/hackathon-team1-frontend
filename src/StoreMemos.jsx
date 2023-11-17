@@ -1,14 +1,10 @@
 import create from 'zustand';
 
 const useMemosStore = create((set) => ({
-    date: new Date('2022-11-15'),
+    date: new Date('2023-11-18'),
     updateDate: (newDate) => set({ date: newDate }),
-    handleDateChange: (classValue) => {
-        set(({ updateDate }) => {
-            const newDate = new Date(classValue);
-            updateDate(newDate);
-        });
-    },
+    formDate: '',
+    updateFormDate: (newDate) => set({ formDate: newDate }),
     pad: (num) => num.toString().padStart(2, '0'),
     memo: '',
     setMemo: (text) => set({ memo: text }),

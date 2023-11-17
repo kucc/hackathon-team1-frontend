@@ -2,21 +2,21 @@ import DayToDo from './DayToDo';
 import { useState } from 'react';
 import Calendar from '../Calender';
 import useMemosStore from '../StoreMemos';
+import DayDate from '../DayDate';
 
 function Day() {
-    const { date, updateDate, pad } = useMemosStore();
-    console.log(date);
+    const { date, pad } = useMemosStore();
     const dateString = date.toLocaleDateString(); // or date.toDateString()
-    console.log(dateString);
     const parts = dateString.split('.'); // 문자열을 점(.)을 기준으로 분할
-    console.log(parts);
     // 연, 월, 일을 추출하고 필요한 경우 두 자리로 패딩
+    console.log(parts);
     const year = parts[0];
-    const month = parts[1].padStart(2, '0');
-    const day = Number(parts[2]).pad();
+    const month = parts[1].replace(/\s+/g, '').padStart(2, '0');
+    const day = parts[2].replace(/\s+/g, '').padStart(2, '0');
 
     // "xxxx-xx-xx" 형식으로 변환
     const formattedDate = `${year}-${month}-${day}`;
+    console.log(formattedDate);
     return (
         <div className="w-[704px] h-auto relative flex-column  justify-center items-center">
             <div className="w-[632px] h-[124px] pl-[68px] pr-[87px] left-[36px] top-[54px] absolute bg-gray-900 rounded-[10px] justify-start items-center inline-flex">
@@ -28,9 +28,7 @@ function Day() {
                 <div className="w-[477px] h-6 text-center text-white text-[32px] font-bold font-['Noto Sans KR'] leading-[48px]">
                     오늘의 추천 일정
                 </div>
-                <DayToDo />
-                <DayToDo />
-                <DayToDo />
+                <DayDate date={formattedDate} />
             </div>
         </div>
     );
