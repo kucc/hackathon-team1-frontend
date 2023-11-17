@@ -1,9 +1,10 @@
 import Calendar from '../Calender';
-
+import Day from '../components/Day';
 function Home() {
     return (
-        <div>
+        <div className="flex">
             <Calendar />
+            <Day />
         </div>
     );
 }
