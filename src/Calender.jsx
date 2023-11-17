@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './Calendar.css';
 
 const Calendar = () => {
@@ -70,17 +71,19 @@ const Calendar = () => {
 
     const date = new Date('2022-10-10');
 
-    makeCalendar(date);
+    useEffect(() => {
+        makeCalendar(date);
 
-    // 이전달 이동
-    document.querySelector(`.prevDay`).onclick = () => {
-        makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
-    };
+        // 이전달 이동
+        document.querySelector(`.prevDay`).onclick = () => {
+            makeCalendar(new Date(date.setMonth(date.getMonth() - 1)));
+        };
 
-    // 다음달 이동
-    document.querySelector(`.nextDay`).onclick = () => {
-        makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
-    };
+        // 다음달 이동
+        document.querySelector(`.nextDay`).onclick = () => {
+            makeCalendar(new Date(date.setMonth(date.getMonth() + 1)));
+        };
+    }, []);
 
     return (
         <div class="rap">
