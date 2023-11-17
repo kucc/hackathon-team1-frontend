@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useMemosStore from '../StoreMemos';
 
 function AddTask() {
@@ -17,6 +17,11 @@ function AddTask() {
     const [eventName, setEventName] = useState('');
     const [category, setCategory] = useState('');
     const [priority, setPriority] = useState(0);
+    const [tasks, setTasks] = useState([]); // 추가된 상태
+
+    useEffect(() => {
+        // 상태 변경에 따른 효과 (예: 서버에서 데이터를 가져오기)
+    }, [tasks]); // tasks 배열이 변경될 때마다 useEffect 실행
 
     const handleRegister = () => {
         const data = {
@@ -34,7 +39,10 @@ function AddTask() {
             body: JSON.stringify(data),
         })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                console.log(data);
+                setTasks((prevTasks) => [...prevTasks, data]); // tasks 상태 업데이트
+            });
     };
     return (
         <div>
