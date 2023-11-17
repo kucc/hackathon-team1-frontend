@@ -4,7 +4,7 @@ import Calendar from '../Calender';
 import useMemosStore from '../StoreMemos';
 
 function Day() {
-    const { date, updateDate } = useMemosStore();
+    const { date, updateDate, pad } = useMemosStore();
     const dateString = date.toLocaleDateString(); // or date.toDateString()
 
     return (

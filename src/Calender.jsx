@@ -42,6 +42,14 @@ const Calendar = () => {
         const nextDay = Math.ceil(limitDay / 7) * 7;
 
         let htmlDummy = '';
+        //달력 클릭 이벤트
+        window.HandleClick = (target) => {
+            console.log('hi');
+            // event.target의 클래스 값으로 날짜를 설정
+            const classValue = target.className;
+            const newDate = new Date(classValue); // 예: "2023-01-01" 형식의 클래스 값
+            updateDate(newDate);
+        };
 
         // 한달전 날짜 표시하기
         for (let i = 0; i < firstDay; i++) {
@@ -53,7 +61,9 @@ const Calendar = () => {
             const date = `${currentYear}-${currentMonth.pad()}-${i.pad()}`;
 
             htmlDummy += `
-        <div class="${currentYear}-${currentMonth}-${pad(i)}">
+        <div onClick="HandleClick(this)" class="${currentYear}-${currentMonth}-${pad(
+                i
+            )}">
           ${i}
           <p>
             ${calendarList[date]?.join('</p><p>') || ''}
@@ -72,11 +82,6 @@ const Calendar = () => {
             `.dateTitle`
         ).innerText = `${currentYear}년 ${currentMonth}월`;
     };
-
-    //달력 클릭 이벤트
-    function HandleClick(event) {
-        return;
-    }
 
     useEffect(() => {
         makeCalendar(date);
