@@ -3,7 +3,7 @@ import Calendar from '../Calender';
 import Day from '../components/Day';
 import useMemosStore from '../StoreMemos';
 import AddTask from '../components/AddTask';
-import Gpt from '../components/Gpt';
+import Generate from '../components/Generate';
 
 function Home() {
     return (
@@ -12,7 +12,7 @@ function Home() {
             <Day />
             <div>
                 <AddTask />
-                <Gpt />
+                <Generate />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-function Gpt() {
+function Generate() {
     const [question, setQuestion] = useState('');
     const handleGpt = () => {
         const data = {
@@ -41,4 +41,4 @@ function Gpt() {
         </div>
     );
 }
-export default Gpt;
+export default Generate;
