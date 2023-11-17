@@ -3,13 +3,17 @@ import Calendar from '../Calender';
 import Day from '../components/Day';
 import useMemosStore from '../StoreMemos';
 import AddTask from '../components/AddTask';
+import Gpt from '../components/Gpt';
 
 function Home() {
     return (
         <div className="flex ">
             <Calendar />
             <Day />
-            <AddTask />
+            <div>
+                <AddTask />
+                <Gpt />
+            </div>
         </div>
     );
 }
