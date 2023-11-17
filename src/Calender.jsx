@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Calendar.css';
 
 const Calendar = () => {
+    const pad = (num) => num.toString().padStart(2, '0');
+    const [date, setDate] = useState(new Date('2022-10-10'));
+
     const data = [
         { date: '2022-10-15', content: '테스트1' },
         { date: '2022-10-03', content: '테스트2' },
@@ -49,7 +52,7 @@ const Calendar = () => {
             const date = `${currentYear}-${currentMonth.pad()}-${i.pad()}`;
 
             htmlDummy += `
-        <div>
+        <div class="${currentYear}-${currentMonth}-${pad(i)}">
           ${i}
           <p>
             ${calendarList[date]?.join('</p><p>') || ''}
@@ -69,7 +72,10 @@ const Calendar = () => {
         ).innerText = `${currentYear}년 ${currentMonth}월`;
     };
 
-    const date = new Date('2022-10-10');
+    //달력 클릭 이벤트
+    function HandleClick(event) {
+        return;
+    }
 
     useEffect(() => {
         makeCalendar(date);
