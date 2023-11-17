@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './Calendar.css';
 
-const Calendar = ({ onDateSelect }) => {
+const Calendar = () => {
     const data = [
         { date: '2022-10-15', content: '테스트1' },
         { date: '2022-10-03', content: '테스트2' },
@@ -49,12 +49,12 @@ const Calendar = ({ onDateSelect }) => {
             const date = `${currentYear}-${currentMonth.pad()}-${i.pad()}`;
 
             htmlDummy += `
-            <div onClick={() => onDateSelect(date)}>
-                ${i}
-                <p>
-                    ${calendarList[date]?.join('</p><p>') || ''}
-                </p>
-            </div>
+        <div>
+          ${i}
+          <p>
+            ${calendarList[date]?.join('</p><p>') || ''}
+          </p>
+        </div>
       `;
         }
 
