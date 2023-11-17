@@ -35,7 +35,7 @@ function Gpt() {
                     ></textarea>
                 </div>
                 <button className="gpt" onClick={handleGpt}>
-                    추천하기
+                    추천받기
                 </button>
             </div>
         </div>
